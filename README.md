@@ -1,48 +1,45 @@
-[![npm version](https://badge.fury.io/js/hiden-no-tare.npm.svg)](http://badge.fury.io/js/hiden-no-tare.npm)
-[![david](https://david-dm.org/pirosikick/hiden-no-tare.npm.svg)](https://david-dm.org/pirosikick/hiden-no-tare.npm)
-[![Build Status](https://travis-ci.org/pirosikick/hiden-no-tare.npm.svg)](https://travis-ci.org/pirosikick/hiden-no-tare.npm)
+[![npm version](https://badge.fury.io/js/redux-save-state.svg)](http://badge.fury.io/js/redux-save-state)
+[![david](https://david-dm.org/pirosikick/redux-save-state.svg)](https://david-dm.org/pirosikick/redux-save-state)
+[![Build Status](https://travis-ci.org/pirosikick/redux-save-state.svg)](https://travis-ci.org/pirosikick/redux-save-state)
 
-hiden-no-tare.npm
+redux-save-state
 =================
 
-A project template of Node.js package for [@pirosikick](https://github.com/pirosikick).
+redux middleware which saves the state to localStorage.
 
-## Hou to use
+## Usage
 
-### Initialize git repositry
+```javascript
+import {createStore, applyMiddleware} from "redux";
+import saveState from "redux-save-state/localStorage";
+import combinedReducers from "./reducer";
 
-```sh
-$ git clone https://github.com/pirosikick/hiden-no-tare.npm.git your-npm-package
-$ cd your-npm-package
+const createStoreWithMiddlewares
+  = applyMiddleware(saveState({ key: 'appState' }))(createStore);
+const store = createStoreWithMiddlewares(combinedReducers);
 
-# Initialize git repositry
-$ rm -rf .git
-$ git init
-$ git add .
-$ git commit -m "Initial commit"
+// In React Component
+store.dispatch(action);
 
-# Install dependencies
-$ npm install
+console.log(localStorage.appState); // state as JSON string
 ```
 
-### npm scripts
+### options
 
-All tasks for development defines with npm scripts.
+#### `key` : String
 
-```
-$ npm run
-Available scripts in the hiden-no-tare.npm package:
-  build
-    babel src -d lib
-  fixpack
-    fixpack
-  lint
-    eslint src test
-  test
-    npm run build && mocha test/ --recursive --compilers js:espower-babel/guess
-  watch
-    babel src -d lib -w & mocha --compilers js:espower-babel/guess -w
-```
+key in localStorage.
+
+#### `filter`: Function
+
+default `state => state`.
+Saves the value returned by `filter` function.
+
+#### `debounce`: Number
+
+default 0.
+Delays setting the state to localStorage until `debounce` milliseconds have elapsed since the last time the action was dispatched.
+See also [_.debounce](https://lodash.com/docs#debounce).
 
 ## License
 
