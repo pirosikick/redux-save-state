@@ -5,7 +5,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "no-comma-dangle": 2,
+    "comma-dangle": 2,
     "no-cond-assign": [2, "always"],
     "no-constant-condition": 2,
     "no-debugger": 1,
@@ -13,7 +13,7 @@
     "no-dupe-keys": 2,
     "no-duplicate-case": 2,
     "no-empty": 1,
-    "no-empty-class": 1,
+    "no-empty-character-class": 1,
     "no-ex-assign": 2,
     "no-extra-boolean-cast": 1,
     "no-extra-parens": 1,
@@ -22,6 +22,7 @@
     "no-inner-declarations": 2,
     "no-invalid-regexp": 2,
     "no-irregular-whitespace": 2,
-    "no-use-before-define": [2, "nofunc"]
+    "no-use-before-define": [2, "nofunc"],
+    "strict": [2, "global"]
   }
 }

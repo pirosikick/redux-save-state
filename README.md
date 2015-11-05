@@ -9,13 +9,16 @@ redux middleware which saves the state to localStorage.
 
 ## Usage
 
+### Interface
+### Example
+
 ```javascript
 import {createStore, applyMiddleware} from "redux";
-import saveState from "redux-save-state/localStorage";
+import {localStorage as saveState} from "redux-save-state/localStorage";
 import combinedReducers from "./reducer";
 
 const createStoreWithMiddlewares
-  = applyMiddleware(saveState({ key: 'appState' }))(createStore);
+  = applyMiddleware(saveState('appState'))(createStore);
 const store = createStoreWithMiddlewares(combinedReducers);
 
 // In React Component
@@ -24,22 +27,34 @@ store.dispatch(action);
 console.log(localStorage.appState); // state as JSON string
 ```
 
-### options
+### Interface
+
+```javascript
+import saveState from "redux-save-state/localStorage";
+
+const key = "some_key_string";
+const options = { ... };
+const middleware = saveState(key, options);
+```
 
 #### `key` : String
 
-key in localStorage.
+Required. The key in localStorage to save state.
 
-#### `filter`: Function
+#### `options.filter`: Function(state: object) => object
 
 default `state => state`.
 Saves the value returned by `filter` function.
 
-#### `debounce`: Number
+#### `options.debounce`: Number
 
 default 0.
 Delays setting the state to localStorage until `debounce` milliseconds have elapsed since the last time the action was dispatched.
 See also [_.debounce](https://lodash.com/docs#debounce).
+
+#### `options.callback`: Function(store) => any
+
+
 
 ## License
 
