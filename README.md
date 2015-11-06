@@ -5,16 +5,15 @@
 redux-save-state
 =================
 
-redux middleware which saves the state to localStorage.
+A redux middleware which saves a snapshot of the state to localStorage.
 
 ## Usage
 
-### Interface
 ### Example
 
 ```javascript
 import {createStore, applyMiddleware} from "redux";
-import {localStorage as saveState} from "redux-save-state/localStorage";
+import saveState from "redux-save-state/localStorage";
 import combinedReducers from "./reducer";
 
 const createStoreWithMiddlewares

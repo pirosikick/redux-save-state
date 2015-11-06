@@ -1,7 +1,6 @@
 "use strict";
 import assign from "lodash/object/assign";
 import debounceFn from "lodash/function/debounce";
-import wrap from "lodash/function/wrap";
 import noop from "lodash/utility/noop";
 
 /**
@@ -25,7 +24,8 @@ function saveToLocalStorage(key, options = {}) {
     }
 
     if (typeof filter === 'function') {
-      save = wrap(save, (save, key, state) => save(key, filter(state)));
+      let original = save;
+      save = (key, state) => original(key, filter(state));
     }
 
     debounce = parseInt(debounce);
@@ -34,9 +34,9 @@ function saveToLocalStorage(key, options = {}) {
     }
 
     return next => action => {
-      let state = store.getState();
+      let result = next(action);
       save(key, store.getState());
-      return next(action);
+      return result;
     };
   }
 }
