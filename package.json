@@ -1,9 +1,9 @@
 {
   "name": "redux-save-state",
-  "discription": "A redux middleware which saves a snapshot of the state to localStorage",
+  "description": "A Redux middleware which saves a snapshot of the state to localStorage",
   "homepage": "https://github.com/pirosikick/redux-save-state",
   "keywords": ["flux", "redux", "redux-middleware", "middleware"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
   "repository": {
     "type": "git",
